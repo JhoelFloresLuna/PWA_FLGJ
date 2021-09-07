@@ -1,0 +1,225 @@
+@import url("https://fonts.googleapis.com/css?family=Mina:400,700");
+/**
+* Variables
+*/
+/**
+* Rules
+*/
+html, body {
+  min-height: 100%;
+}
+
+body {
+  padding: 20px 20px 40px 20px;
+  background-color: #f5f5f5;
+}
+
+.title {
+  font-family: "Mina", sans-serif;
+  font-size: 2em;
+  font-weight: 700;
+  color: #404040;
+  text-transform: uppercase;
+  margin: 35px 0;
+  white-space: nowrap;
+}
+
+.custom-card {
+  position: relative;
+  margin-bottom: -3px;
+  box-shadow: 0px 6px 38px 0px rgba(0, 0, 0, 0.085);
+  will-change: box-shadow;
+  transition: box-shadow 0.3s ease;
+}
+.custom-card:hover {
+  box-shadow: 0px 13px 38px 0px rgba(0, 0, 0, 0.15);
+}
+.custom-card .card-body {
+  padding-top: 65px;
+}
+.custom-card .card-cover {
+  position: relative;
+  background: none no-repeat center center/cover;
+  height: 140px;
+}
+.custom-card .card-cover:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.45);
+}
+.custom-card .circle-image {
+  position: absolute;
+  background: none no-repeat center center/cover;
+  width: 90px;
+  height: 90px;
+  bottom: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+}
+.custom-card .circle-image:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: inset 0 0 0 6px #fff;
+  width: calc( 100% + 10px );
+  height: calc( 100% + 10px );
+  border-radius: 50%;
+}
+@media screen and (max-width: 768px) {
+  .custom-card .card-cover {
+    background: none;
+    height: 0;
+  }
+  .custom-card .circle-image {
+    position: relative;
+    bottom: inherit;
+    top: 20px;
+    left: 10px;
+    width: 70px;
+    height: 70px;
+    transform: none;
+  }
+  .custom-card .circle-image:before {
+    box-shadow: none;
+  }
+  .custom-card .card-body {
+    padding-top: 20px;
+    padding-left: 120px;
+  }
+}
+
+
+   
+/* The Loader */
+#loader-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  overflow: hidden;
+}
+.no-js #loader-wrapper {
+  display: none;
+}
+
+#loader {
+  display: block;
+  position: relative;
+  left: 50%;
+  top: 50%;
+  width: 150px;
+  height: 150px;
+  margin: -75px 0 0 -75px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  border-top-color: #16a085;
+  -webkit-animation: spin 1.7s linear infinite;
+          animation: spin 1.7s linear infinite;
+  z-index: 11;
+}
+#loader:before {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  border-top-color: #e74c3c;
+  -webkit-animation: spin-reverse 0.6s linear infinite;
+          animation: spin-reverse 0.6s linear infinite;
+}
+#loader:after {
+  content: "";
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  border-top-color: #f9c922;
+  -webkit-animation: spin 1s linear infinite;
+          animation: spin 1s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes spin-reverse {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(-360deg);
+  }
+}
+@keyframes spin-reverse {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+#loader-wrapper .loader-section {
+  position: fixed;
+  top: 0;
+  width: 51%;
+  height: 100%;
+  background: rgb(73, 73, 73);
+  z-index: 10;
+}
+
+#loader-wrapper .loader-section.section-left {
+  left: 0;
+}
+
+#loader-wrapper .loader-section.section-right {
+  right: 0;
+}
+
+/* Loaded styles */
+.loaded #loader-wrapper .loader-section.section-left {
+  transform: translateX(-100%);
+  transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.loaded #loader-wrapper .loader-section.section-right {
+  transform: translateX(100%);
+  transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.loaded #loader {
+  opacity: 0;
+  transition: all 0.3s ease-out;
+}
+
+.loaded #loader-wrapper {
+  visibility: hidden;
+  transform: translateY(-100%);
+  transition: all 0.3s 1s ease-out;
+}
