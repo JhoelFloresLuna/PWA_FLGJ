@@ -11,8 +11,8 @@ const listUsers = async() => {
 const registerUser = async (obj) => {
     try {
        return fetch('https://reqres.in/api/users', {
-            method: 'POST', // or 'PUT'
-            body: JSON.stringify(obj), // data can be `string` or {object}!
+            method: 'POST', 
+            body: JSON.stringify(obj), 
             headers:{
               'Content-Type': 'application/json'
             }
@@ -43,7 +43,7 @@ const start = async () => {
     const {data} = await listUsers()
     let counter =1;
     data.forEach(element => {
-        let card=`
+        const card=`
         <div class="col-lg">
             <div class="card custom-card">
             <div class="card-cover" style="background-image: url( https://picsum.photos/600/400/?${getNumber(10,50)} );">
@@ -89,22 +89,26 @@ const sendForm = async (event) => {
 
     if(name==="" || job===""){
         Swal.fire(
-            'Por favor completa todo los campos',
+            'Por favor completa todos los campos',
             '',
             'warning'
           )
     }else{
         const user = {
-            "name": name,
-            "job": job
+            name ,
+            job
         };
        
         const response = await registerUser(user);
-        Swal.fire('Registro exitoso!', `Nombre: ${response.name}
-         Puesto: ${response.job}`, 'success')
+        
+        Swal.fire('Registro exitoso!', `Nombre: ${response.name} <br>
+        Puesto: ${response.job} <br>
+        Fecha registro ${new Date(response.createdAt).toLocaleDateString()}`, 'success')
         document.getElementById("inputName").value="";
         document.getElementById("inputJob").value="";
         resetForm()
+        
+       
     }
     
 }
