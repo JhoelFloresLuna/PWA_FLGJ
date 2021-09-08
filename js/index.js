@@ -46,7 +46,7 @@ const start = async () => {
         const card=`
         <div class="col-lg">
             <div class="card custom-card">
-            <div class="card-cover" style="background-image: url( https://picsum.photos/600/400/?${getNumber(10,50)} );">
+            <div class="card-cover" style="background-image: url( https://picsum.photos/600/400/?${getNumber(1,50)} );">
                 <div class="circle-image" style="background-image: url( ${element.avatar} );"></div>
             </div>        
             <div class="card-body">
@@ -63,27 +63,32 @@ const start = async () => {
             document.getElementById("registros").insertAdjacentHTML("beforeend",card);
         }
     });
+    chargeLoader()
+    
+}
+
+const chargeLoader = () => {
     setTimeout(() => {
+        document.getElementById("main").classList.remove("loaded");
         document.getElementById("main").classList.add("loaded");
-    }, 2000)
-    
-    
+    }, 2000);
 }
 
 const getForm = () => {
-    document.getElementById("view").style.display="none"
-    document.getElementById("form").style.display="block"
+    document.getElementById("view").style.display="none";
+    document.getElementById("form").style.display="block";
 }
 
 const resetForm = () => {
-    document.getElementById("view").style.display="block"
-    document.getElementById("form").style.display="none"
     document.getElementById("inputName").value="";
     document.getElementById("inputJob").value="";
+    document.getElementById("view").style.display="block";
+    document.getElementById("form").style.display="none";
 }
 
 const sendForm = async (event) => {
     event.preventDefault();
+    document.getElementById("main").classList.remove("loaded");
     const name = document.getElementById("inputName").value;
     const job = document.getElementById("inputJob").value;
 
@@ -100,15 +105,14 @@ const sendForm = async (event) => {
         };
        
         const response = await registerUser(user);
-        
-        Swal.fire('Registro exitoso!', `Nombre: ${response.name} <br>
-        Puesto: ${response.job} <br>
-        Fecha registro: ${new Date(response.createdAt).toLocaleDateString()}`, 'success')
-        document.getElementById("inputName").value="";
-        document.getElementById("inputJob").value="";
-        resetForm()
-        
-       
+        setTimeout(() => {
+            Swal.fire('Registro exitoso!', `Nombre: ${response.name} <br>
+            Puesto: ${response.job} <br>
+            Fecha registro: ${new Date(response.createdAt).toLocaleDateString()}`, 'success');
+            resetForm();
+            document.getElementById("main").classList.add("loaded");
+            
+        }, 1000);
     }
     
 }
