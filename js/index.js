@@ -103,7 +103,7 @@ const sendForm = async (event) => {
         
         Swal.fire('Registro exitoso!', `Nombre: ${response.name} <br>
         Puesto: ${response.job} <br>
-        Fecha registro ${new Date(response.createdAt).toLocaleDateString()}`, 'success')
+        Fecha registro: ${new Date(response.createdAt).toLocaleDateString()}`, 'success')
         document.getElementById("inputName").value="";
         document.getElementById("inputJob").value="";
         resetForm()
