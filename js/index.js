@@ -88,7 +88,7 @@ const resetForm = () => {
 
 const sendForm = async (event) => {
     event.preventDefault();
-    //document.getElementById("main").classList.remove("loaded");
+   
     const name = document.getElementById("inputName").value;
     const job = document.getElementById("inputJob").value;
 
@@ -110,7 +110,7 @@ const sendForm = async (event) => {
             Puesto: ${response.job} <br>
             Fecha registro: ${new Date(response.createdAt).toLocaleDateString()}`, 'success');
             resetForm();
-            //document.getElementById("main").classList.add("loaded");
+           
             
         }, 1000);
     }
